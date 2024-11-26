@@ -9,7 +9,8 @@ import ReactFusioncharts from "react-fusioncharts";
 // Importing FusionCharts modules
 ReactFusioncharts.fcRoot(FusionCharts, Charts);
 
-const API_URL = "http://localhost:3000"; // Adjust if necessary
+//const API_URL = "http://localhost:3000"; // Adjust if necessary
+const API_URL = "https://managemylibrary.onrender.com"; // Adjust if necessary
 
 const AddStudent = () => {
     const [chartData, setChartData] = useState([

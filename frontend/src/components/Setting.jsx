@@ -4,7 +4,8 @@ import close from '../assets/close_24dp_E8EAED_FILL0_wght100_GRAD0_opsz20.svg'
 import { useNavigate } from 'react-router-dom'; 
 import { useState } from 'react';
 
-const API_URL = "http://localhost:3000"; // Adjust if necessary
+//const API_URL = "http://localhost:3000"; // Adjust if necessary
+const API_URL = "https://managemylibrary.onrender.com"
 const Setting = () => {
 
   const [name,SetName] = useState('');
