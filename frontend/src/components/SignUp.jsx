@@ -1,0 +1,93 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './SignUp.css';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+//const API_URL = "https://todo-web-pgbt.onrender.com";
+const API_URL = "http://localhost:3000"; // Adjust if necessary
+const SignUp = () => {
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [signinData, setSignInData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setSignInData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+       await axios.post(`${API_URL}/api/signup`, signinData, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      navigate('/signin');
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || 'Error signing up';
+      setErrorMsg(errorMessage === 'Email already exists' ? 'Email already registered' : errorMessage);
+    }
+  };
+
+  return (
+    <div className="signup">
+      <form onSubmit={handleSubmit}>
+        <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
+        {errorMsg && <div className="alert alert-danger" role="alert">{errorMsg}</div>} 
+        
+        <div className="form-floating">
+          <input 
+            type="text" 
+            className="form-control" 
+            id="name" 
+            placeholder="John Doe"
+            value={signinData.name}
+            onChange={handleChange} 
+          />
+          <label htmlFor="name">Name</label>
+        </div>
+
+        <div className="form-floating">
+          <input 
+            type="email" 
+            className="form-control" 
+            id="email" 
+            placeholder="name@example.com"
+            value={signinData.email}
+            onChange={handleChange} 
+          />
+          <label htmlFor="email">Email address</label>
+        </div>
+
+        <div className="form-floating">
+          <input 
+            type="password" 
+            className="form-control" 
+            id="password" 
+            placeholder="Password"
+            value={signinData.password}
+            onChange={handleChange} 
+          />
+          <label htmlFor="password">Password</label>
+        </div>
+
+        <button className="btn w-100 py-2" type="submit">Sign Up</button>
+        <div className='footer'>
+          <div>Have an account?</div>
+          {/* <a href="/signin">Sign In</a> */}
+          <button className='footer-btn' type="button" onClick={() => navigate('/sigin')}>Sign In</button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;
+
+

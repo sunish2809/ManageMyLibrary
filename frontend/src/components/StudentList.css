@@ -1,0 +1,38 @@
+.students-list-container {
+    h2{
+        font-size: 16px;
+        font-weight: 600;
+
+    }
+    max-height: 1000vh;
+    overflow-y: scroll;
+    background-color: #f4ece4;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.05);
+}
+.students-list {
+    width: 100%;
+    /* border-collapse: collapse; */
+    margin-bottom: 10px;
+}
+.student-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #f4f9ff;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+    .column-title{
+        font-size: 13px;
+        font-weight: 500;
+    }
+    .student-name{
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .student-seatnumber{
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
